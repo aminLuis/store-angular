@@ -9,6 +9,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
 import { BodyComponent } from './body/body.component';
 import { RegistroComponent } from './views/producto/registro/registro.component';
+import { RegistroClienteComponent } from './views/cliente/registro-cliente/registro-cliente.component';
+
 
 @NgModule({
   declarations: [
@@ -18,11 +20,13 @@ import { RegistroComponent } from './views/producto/registro/registro.component'
     FooterComponent,
     BodyComponent,
     RegistroComponent,
+    RegistroClienteComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      {path: 'producto-registro', component: RegistroComponent}
+      {path: 'producto-register', component: RegistroComponent},
+      {path: 'cliente-save', component: RegistroClienteComponent}
     ]),
   
   ],
