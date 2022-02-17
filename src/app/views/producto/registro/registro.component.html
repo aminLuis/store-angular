@@ -15,31 +15,31 @@
             </div>
             <div class="modal-body">
            
-                <form>
+                <form [formGroup]="form_producto" (ngSubmit)="save_producto()">
 
                     <div class="row">
                         <div class="col">
                             <label for="">Nombre producto</label>
-                            <input type="text" class="form-control form-control-sm">
+                            <input formControlName="nombre" type="text" class="form-control form-control-sm">
                         </div>
                         <div class="col">
                             <label for="">Descripción producto</label>
-                            <input type="text" class="form-control form-control-sm">
+                            <input formControlName="descripcion" type="text" class="form-control form-control-sm">
                         </div>
                     </div>
             
                     <div class="row">
                         <div class="col">
                             <label for="">Precio</label>
-                            <input type="number" step="any" class="form-control form-control-sm">
+                            <input formControlName="precio" type="number" step="any" class="form-control form-control-sm">
                         </div>
                         <div class="col">
                             <label for="">Stock</label>
-                            <input type="number" class="form-control form-control-sm">
+                            <input formControlName="stock" type="number" class="form-control form-control-sm">
                         </div>
                     </div>
                     <br>
-                    <button class="btn btn-success btn-sm">Registrar</button>
+                    <button type="submit" class="btn btn-success btn-sm">Registrar</button>
             
                 </form>
             

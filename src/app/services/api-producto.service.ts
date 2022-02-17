@@ -12,7 +12,7 @@ export class ApiProductoService {
   constructor(private http:HttpClient) { }
 
   public getProductos():Observable<Producto[]>{
-    return this.http.get<Producto[]>("URL");
+    return this.http.get<Producto[]>("http://localhost:8080/api/productos");
   }
 
   public getProducto(id: BigInteger):Observable<Producto>{
