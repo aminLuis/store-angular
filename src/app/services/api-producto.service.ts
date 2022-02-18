@@ -20,7 +20,11 @@ export class ApiProductoService {
   }
 
   public saveProducto(producto:Producto):Observable<Producto>{
-    return this.http.post<Producto>("URL",producto);
+    return this.http.post<Producto>("http://localhost:8080/api/producto",producto);
+  }
+
+  public deleteProducto(id: BigInteger):Observable<Producto>{
+    return this.http.delete<Producto>("http://localhost:8080/api/producto/"+id);
   }
 
 }

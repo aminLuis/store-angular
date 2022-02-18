@@ -63,14 +63,14 @@
         </thead>
 
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr *ngFor="let producto of productos">
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.descripcion }}</td>
+                <td>{{ producto.precio }}</td>
+                <td>{{ producto.stock }}</td>
                 <td>
-                    <button class="btn btn-primary btn-sm">Editar</button>
-                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                    <button class="btn btn-primary btn-sm">Editar</button> |
+                    <button (click)="delete_producto(producto.id)" type="button" class="btn btn-danger btn-sm">Eliminar</button>
                 </td>
             </tr>
         </tbody>
