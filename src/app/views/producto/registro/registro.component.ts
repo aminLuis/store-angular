@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ApiProductoService } from '../../../services/api-producto.service';
 import { Router } from '@angular/router';
 import { Producto } from 'src/app/models/Producto.interface';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class RegistroComponent implements OnInit {
 
   productos: Producto[]=[];
   form_producto: FormGroup;
-
+  @Input() subscription!: Subscription;
 
   constructor(
      public formulario:FormBuilder,
@@ -30,6 +31,9 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit(): void {
     this.listar_productos();
+    this.subscription = this.api_producto.reload.subscribe(()=>{
+      this.listar_productos();
+    });
   }
 
   listar_productos(){
@@ -40,18 +44,18 @@ export class RegistroComponent implements OnInit {
 
   save_producto():any{
     this.api_producto.saveProducto(this.form_producto.value).subscribe();
-    if(this.form_producto!=null){
-      this.listar_productos();
-      this.form_producto.reset();
-    }
+    this.form_producto.reset();    
+  }
+
+  public update_producto(){
+
   }
 
   delete_producto(id:BigInteger){
-    this.api_producto.deleteProducto(id);
-    if(id!=null){
-      this.listar_productos();
+    if(confirm('¿Desea eliminar el registro?')){
+      this.api_producto.deleteProducto(id).subscribe();
     }
-    console.log(id);
+    
   }
 
 }
