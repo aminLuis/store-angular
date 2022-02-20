@@ -17,16 +17,18 @@ export class ApiProductoService {
     return this.refresh;
   }
 
+  URL: string = "http://localhost:8080/api/producto";
+
   public getProductos():Observable<Producto[]>{
-    return this.http.get<Producto[]>("http://localhost:8080/api/productos");
+    return this.http.get<Producto[]>(this.URL);
   }
 
   public getProducto(id: BigInteger):Observable<Producto>{
-    return this.http.get<Producto>("URL"+id);
+    return this.http.get<Producto>(this.URL+id);
   }
 
   public saveProducto(producto:Producto):Observable<Producto>{
-    return this.http.post<Producto>("http://localhost:8080/api/producto",producto).
+    return this.http.post<Producto>(this.URL,producto).
     pipe(
       tap(()=>{
         this.refresh.next();
@@ -35,12 +37,23 @@ export class ApiProductoService {
   }
 
   public deleteProducto(id: BigInteger):Observable<{}>{
-    return this.http.delete<Producto>("http://localhost:8080/api/producto/"+id).
+    return this.http.delete<Producto>(this.URL+id).
     pipe(
       tap(()=>{
         this.refresh.next();
       })
     )
   }
+
+  public updateProducto(producto:Producto):Observable<Producto>{
+    return this.http.put<Producto>(this.URL+producto.id,producto).
+    pipe(
+      tap(()=>{
+        this.refresh.next();
+      })
+    )
+  }
+
+  
 
 }
