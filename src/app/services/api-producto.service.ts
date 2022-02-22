@@ -24,7 +24,7 @@ export class ApiProductoService {
   }
 
   public getProducto(id: BigInteger):Observable<Producto>{
-    return this.http.get<Producto>(this.URL+id);
+    return this.http.get<Producto>(this.URL+"/"+id);
   }
 
   public saveProducto(producto:Producto):Observable<Producto>{
@@ -37,7 +37,7 @@ export class ApiProductoService {
   }
 
   public deleteProducto(id: BigInteger):Observable<{}>{
-    return this.http.delete<Producto>(this.URL+id).
+    return this.http.delete<Producto>(this.URL+"/"+id).
     pipe(
       tap(()=>{
         this.refresh.next();
@@ -46,7 +46,7 @@ export class ApiProductoService {
   }
 
   public updateProducto(producto:Producto):Observable<Producto>{
-    return this.http.put<Producto>(this.URL+producto.id,producto).
+    return this.http.put<Producto>(this.URL+"/"+producto.id,producto).
     pipe(
       tap(()=>{
         this.refresh.next();

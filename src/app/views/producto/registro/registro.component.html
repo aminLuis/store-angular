@@ -30,8 +30,8 @@
             
                     <div class="row">
                         <div class="col">
-                            <label for="">Precio</label>
-                            <input formControlName="precio" type="number" step="any" class="form-control form-control-sm">
+                            <label for="">Costo unidad</label>
+                            <input formControlName="costo_unidad" type="number" step="any" class="form-control form-control-sm">
                         </div>
                         <div class="col">
                             <label for="">Stock</label>
@@ -78,8 +78,8 @@
             
                     <div class="row">
                         <div class="col">
-                            <label for="">Precio</label>
-                            <input *ngIf="producto" [(ngModel)]="producto.precio" formControlName="precio" type="number" step="any" class="form-control form-control-sm">
+                            <label for="">Costo unidad</label>
+                            <input *ngIf="producto" [(ngModel)]="producto.costo_unidad" formControlName="costo_unidad" type="number" step="any" class="form-control form-control-sm">
                         </div>
                         <div class="col">
                             <label for="">Stock</label>
@@ -104,7 +104,7 @@
             <tr>
                 <th>Nombre</th>
                 <th>Descripción</th>
-                <th>Precio</th>
+                <th>Costo unidad</th>
                 <th>Stock</th>
                 <th>Acciones</th>
             </tr>
@@ -114,7 +114,7 @@
             <tr *ngFor="let producto of productos">
                 <td>{{ producto.nombre }}</td>
                 <td>{{ producto.descripcion }}</td>
-                <td>{{ producto.precio }}</td>
+                <td>{{ producto.costo_unidad }}</td>
                 <td>{{ producto.stock }}</td>
                 <td>
                     <button (click)="cargar_datos(producto)" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-editar">Editar</button> |
