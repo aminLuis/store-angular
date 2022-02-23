@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @Component({
   selector: 'app-registro-cliente',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistroClienteComponent implements OnInit {
 
-  constructor() { }
+  
+
+  options: google.maps.MapOptions = {
+    mapTypeId: 'hybrid',
+    zoomControl: false,
+    scrollwheel: false,
+    disableDoubleClickZoom: true,
+    maxZoom: 15,
+    minZoom: 8
+  }
+
+  constructor(maps: GoogleMapsModule) { }
 
   ngOnInit(): void {
+  }
+
+  eventoClick(){
+  
   }
 
 }

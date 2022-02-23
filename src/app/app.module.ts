@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { GoogleMapsModule } from '@angular/google-maps';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -29,6 +29,7 @@ import { RegistroClienteComponent } from './views/cliente/registro-cliente/regis
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    GoogleMapsModule,
     RouterModule.forRoot([
       {path: 'producto-register', component: RegistroComponent},
       {path: 'cliente-save', component: RegistroClienteComponent}
