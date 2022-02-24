@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GoogleMapsModule } from '@angular/google-maps';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -13,8 +13,6 @@ import { BodyComponent } from './body/body.component';
 import { RegistroComponent } from './views/producto/registro/registro.component';
 import { RegistroClienteComponent } from './views/cliente/registro-cliente/registro-cliente.component';
 import { LoginComponent } from './views/login/login.component';
-import { PruebaComponent } from './views/prueba/prueba.component';
-
 
 @NgModule({
   declarations: [
@@ -25,15 +23,14 @@ import { PruebaComponent } from './views/prueba/prueba.component';
     BodyComponent,
     RegistroComponent,
     RegistroClienteComponent,
-    LoginComponent,
-    PruebaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    GoogleMapsModule,
+    AgmCoreModule.forRoot({apiKey: "AIzaSyB1uIygznGdX6Ekmu0gILESEyqgaRgIBoc"}),
     RouterModule.forRoot([
       {path: 'producto-register', component: RegistroComponent},
       {path: 'cliente-save', component: RegistroClienteComponent},
