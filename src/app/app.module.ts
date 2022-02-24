@@ -12,6 +12,8 @@ import { FooterComponent } from './footer/footer.component';
 import { BodyComponent } from './body/body.component';
 import { RegistroComponent } from './views/producto/registro/registro.component';
 import { RegistroClienteComponent } from './views/cliente/registro-cliente/registro-cliente.component';
+import { LoginComponent } from './views/login/login.component';
+import { PruebaComponent } from './views/prueba/prueba.component';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { RegistroClienteComponent } from './views/cliente/registro-cliente/regis
     BodyComponent,
     RegistroComponent,
     RegistroClienteComponent,
+    LoginComponent,
+    PruebaComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,8 @@ import { RegistroClienteComponent } from './views/cliente/registro-cliente/regis
     GoogleMapsModule,
     RouterModule.forRoot([
       {path: 'producto-register', component: RegistroComponent},
-      {path: 'cliente-save', component: RegistroClienteComponent}
+      {path: 'cliente-save', component: RegistroClienteComponent},
+      {path: 'login-inicio', component: LoginComponent}
     ]),
   
   ],
