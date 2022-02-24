@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AgmCoreModule } from '@agm/core';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -30,7 +30,7 @@ import { LoginComponent } from './views/login/login.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AgmCoreModule.forRoot({apiKey: "AIzaSyB1uIygznGdX6Ekmu0gILESEyqgaRgIBoc"}),
+    GoogleMapsModule,
     RouterModule.forRoot([
       {path: 'producto-register', component: RegistroComponent},
       {path: 'cliente-save', component: RegistroClienteComponent},

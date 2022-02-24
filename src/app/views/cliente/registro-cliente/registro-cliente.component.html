@@ -57,7 +57,17 @@
                             </div>
                         </div>
 
-                        <agm-map></agm-map>
+                        <div class="row">
+                            
+                            <google-map
+                            [center]="center"
+                            [zoom]="zoom"
+                            [title]="title"
+                            >
+
+                            </google-map>
+
+                        </div>
 
                         <br>
                         <button class="btn btn-success btn-sm">Guardar</button>
