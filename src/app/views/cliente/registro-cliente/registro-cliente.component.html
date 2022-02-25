@@ -59,11 +59,21 @@
 
                         <div class="row">
                             
-                            <google-map
+                            <google-map width="795px"
                             [center]="center"
                             [zoom]="zoom"
                             [title]="title"
+                            
                             >
+
+                            <map-marker
+                            [position]="position"
+                            [draggable]="true"
+                            >
+
+                            </map-marker>
+
+                            
 
                             </google-map>
 

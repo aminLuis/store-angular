@@ -30,13 +30,10 @@
             
                     <div class="row">
                         <div class="col">
-                            <label for="">Costo unidad</label>
-                            <input formControlName="costo_unidad" type="number" step="any" class="form-control form-control-sm">
+                            <label for="">Precio</label>
+                            <input formControlName="precio" type="number" step="any" class="form-control form-control-sm">
                         </div>
-                        <div class="col">
-                            <label for="">Stock</label>
-                            <input formControlName="stock" type="number" class="form-control form-control-sm">
-                        </div>
+                        <div class="col"></div>
                     </div>
                     <br>
                     <button type="submit" class="btn btn-success btn-sm">Registrar</button>
@@ -78,12 +75,10 @@
             
                     <div class="row">
                         <div class="col">
-                            <label for="">Costo unidad</label>
-                            <input *ngIf="producto" [(ngModel)]="producto.costo_unidad" formControlName="costo_unidad" type="number" step="any" class="form-control form-control-sm">
+                            <label for="">Precio</label>
+                            <input *ngIf="producto" [(ngModel)]="producto.precio" formControlName="precio" type="number" step="any" class="form-control form-control-sm">
                         </div>
                         <div class="col">
-                            <label for="">Stock</label>
-                            <input *ngIf="producto" [(ngModel)]="producto.stock" formControlName="stock" type="number" class="form-control form-control-sm">
                         </div>
                     </div>
                     <br>
@@ -104,8 +99,7 @@
             <tr>
                 <th>Nombre</th>
                 <th>Descripción</th>
-                <th>Costo unidad</th>
-                <th>Stock</th>
+                <th>Precio</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -114,8 +108,7 @@
             <tr *ngFor="let producto of productos">
                 <td>{{ producto.nombre }}</td>
                 <td>{{ producto.descripcion }}</td>
-                <td>{{ producto.costo_unidad }}</td>
-                <td>{{ producto.stock }}</td>
+                <td>{{ producto.precio }}</td>
                 <td>
                     <button (click)="cargar_datos(producto)" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-editar">Editar</button> |
                     <button (click)="delete_producto(producto.id)" type="button" class="btn btn-danger btn-sm">Eliminar</button>

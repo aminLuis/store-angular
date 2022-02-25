@@ -13,6 +13,7 @@ import { BodyComponent } from './body/body.component';
 import { RegistroComponent } from './views/producto/registro/registro.component';
 import { RegistroClienteComponent } from './views/cliente/registro-cliente/registro-cliente.component';
 import { LoginComponent } from './views/login/login.component';
+import { InventarioComponent } from './views/inventario/inventario.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LoginComponent } from './views/login/login.component';
     BodyComponent,
     RegistroComponent,
     RegistroClienteComponent,
-    LoginComponent
+    LoginComponent,
+    InventarioComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { LoginComponent } from './views/login/login.component';
     RouterModule.forRoot([
       {path: 'producto-register', component: RegistroComponent},
       {path: 'cliente-save', component: RegistroClienteComponent},
-      {path: 'login-inicio', component: LoginComponent}
+      {path: 'login-inicio', component: LoginComponent},
+      {path: 'inventario-registro', component: InventarioComponent}
     ]),
   
   ],

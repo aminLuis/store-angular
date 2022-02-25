@@ -2,7 +2,6 @@ export interface Producto{
 id:BigInteger,
 nombre:String,
 descripcion:String,
-costo_unidad:DoubleRange,
-stock: BigInteger,
+precio:DoubleRange,
 date_register:Date
 }

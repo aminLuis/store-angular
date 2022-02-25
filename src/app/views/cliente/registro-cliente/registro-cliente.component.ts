@@ -13,6 +13,11 @@ export class RegistroClienteComponent implements OnInit {
   }  
   zoom = 15;
   title = 'Marker'
+
+  position = {
+    lat: 8.75,
+    lng: -75.883
+  }
  
 
   constructor() { }

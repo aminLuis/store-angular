@@ -26,8 +26,7 @@ export class RegistroComponent implements OnInit {
        this.form_producto = formulario.group({
          nombre:[''],
          descripcion:[''],
-         costo_unidad:[''],
-         stock:['']
+         precio:['']
        });
      }
 
