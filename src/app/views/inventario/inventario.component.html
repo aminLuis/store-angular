@@ -1,1 +1,73 @@
-<p>inventario works!</p>
+<div class="container">
+    
+    <h3>Inventarios</h3>
+    <hr>
+
+    <div class="row">
+
+        <div class="col-1">
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-nuevo">Nuevo</button>
+        </div>
+
+        <!-- Inicio listado inventario -->
+        <div class="col-9">
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="card">
+                        <div class="card-header">
+                          Fecha inventario
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-title">Descripción</h5>
+                          <a href="#" class="btn btn-danger">Liquidar inventario</a>
+                        </div>
+                      </div>
+                </li>
+            </ul>
+
+        </div>
+        <!-- Final listado inventario -->
+
+        <!-- Inicio modal crear inventario -->
+
+        <div class="modal fade" id="modal-nuevo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header bg-primary">
+                  <h5 class="modal-title text-white" id="exampleModalLabel">Crear inventario</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  
+                    <form>
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="">Descripción inventario</label>
+                                <input type="text" class="form-control form-control-sm">
+                            </div>
+                            <div class="col">
+                                <label for="">Fecha inventario</label>
+                                <input type="date" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <br>
+
+                        <button class="btn btn-success">Registrar</button>
+
+                    </form>
+
+                </div>
+               
+              </div>
+            </div>
+        </div>
+
+        <!-- Final modal crear inventario -->
+
+    </div>
+
+</div>
