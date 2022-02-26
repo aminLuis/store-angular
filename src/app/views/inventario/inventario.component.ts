@@ -16,6 +16,7 @@ export class InventarioComponent implements OnInit {
 
   inventarios: Inventario[] = [];
   form_inventario: FormGroup;
+  @Input() inventario!: Inventario;
   
 
   constructor(private api_inventario: ApiInventarioService, private router: Router, formulario: FormBuilder) { 
@@ -45,9 +46,38 @@ export class InventarioComponent implements OnInit {
     this.form_inventario.reset();
   }
 
+  update_inventario(){
+    this.api_inventario.updateInventario(this.inventario).subscribe();
+    this.mensaje('Se ha actualizado el inventario');
+  }
+
+  delete_inventario(id:BigInteger){
+    Swal.fire({
+      title: '¿Seguro que desea eliminar el registro?',
+      text: "El registro se eliminará permanentemente",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, deseo eliminarlo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.api_inventario.deleteInventario(id).subscribe();
+        Swal.fire(
+          'Eliminado!',
+          'El registro ha sido eliminado.',
+          'success'
+        )
+      }
+    })
+  
+}
 
 
-
+  cargar_datos(data: Inventario){
+    this.inventario = data;
+    console.log(this.inventario);
+  }
 
   mensaje(texto: string){
     Swal.fire({
