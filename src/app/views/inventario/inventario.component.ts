@@ -2,9 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ApiInventarioService } from 'src/app/services/api-inventario.service';
 import { Router } from '@angular/router';
 import { Inventario } from 'src/app/models/Inventario.interface';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-inventario',
@@ -14,12 +15,16 @@ import Swal from 'sweetalert2';
 export class InventarioComponent implements OnInit {
 
   inventarios: Inventario[] = [];
-  array_inventario = {
-    descripcion:'',
-    fecha:''
-  };
+  form_inventario: FormGroup;
+  
 
-  constructor(private api_inventario: ApiInventarioService, private router: Router) { }
+  constructor(private api_inventario: ApiInventarioService, private router: Router, formulario: FormBuilder) { 
+    this.form_inventario = formulario.group({
+      descripcion:[''],
+      fecha:[''],
+      estado:'ACTIVO'
+    });
+  }
 
   ngOnInit(): void {
     this.listar_inventarios();
@@ -35,7 +40,9 @@ export class InventarioComponent implements OnInit {
   }
 
   save_inventario():any{
-    console.log(this.array_inventario);
+    this.api_inventario.saveInventario(this.form_inventario.value).subscribe();
+    this.mensaje('Inventario registrado');
+    this.form_inventario.reset();
   }
 
 

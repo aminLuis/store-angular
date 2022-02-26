@@ -13,14 +13,16 @@
         <div class="col-9">
 
             <ul class="list-group">
-                <li class="list-group-item">
+                <li *ngFor="let inventario of inventarios" class="list-group-item">
                     <div class="card">
                         <div class="card-header">
-                          Fecha inventario
+                          {{inventario.fecha}}
                         </div>
                         <div class="card-body">
-                          <h5 class="card-title">Descripción</h5>
-                          <a href="#" class="btn btn-danger">Liquidar inventario</a>
+                          <h5 class="card-title">{{inventario.descripcion}}</h5>
+                          <button class="btn btn-warning">Liquidar inventario</button> | 
+                          <button class="btn btn-primary">Editar inventario</button> |
+                          <button class="btn btn-danger">Eliminar inventario</button>
                         </div>
                       </div>
                 </li>
@@ -42,16 +44,16 @@
                 </div>
                 <div class="modal-body">
                   
-                    <form (ngSubmit)="save_inventario()" #forma="ngForm">
+                    <form [formGroup]="form_inventario" (ngSubmit)="save_inventario()">
 
                         <div class="row">
                             <div class="col">
                                 <label for="">Descripción inventario</label>
-                                <input #name="ngModel" [(ngModel)]="array_inventario.descripcion" type="text" class="form-control form-control-sm">
+                                <input formControlName="descripcion" type="text" class="form-control form-control-sm">
                             </div>
                             <div class="col">
                                 <label for="">Fecha inventario</label>
-                                <input #name="ngModel" [(ngModel)]="array_inventario.fecha" type="date" class="form-control form-control-sm">
+                                <input formControlName="fecha" type="date" class="form-control form-control-sm">
                             </div>
                         </div>
                         <br>
@@ -67,6 +69,10 @@
         </div>
 
         <!-- Final modal crear inventario -->
+
+        <!-- Inicio modal editar inventario -->
+
+        <!-- Final modal editar inventario -->
 
     </div>
 
