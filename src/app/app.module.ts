@@ -15,6 +15,7 @@ import { RegistroComponent } from './views/producto/registro/registro.component'
 import { RegistroClienteComponent } from './views/cliente/registro-cliente/registro-cliente.component';
 import { LoginComponent } from './views/login/login.component';
 import { InventarioComponent } from './views/inventario/inventario.component';
+import { InsumoComponent } from './views/insumo/insumo.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { InventarioComponent } from './views/inventario/inventario.component';
     RegistroComponent,
     RegistroClienteComponent,
     LoginComponent,
-    InventarioComponent
+    InventarioComponent,
+    InsumoComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { InventarioComponent } from './views/inventario/inventario.component';
       {path: 'producto-register', component: RegistroComponent},
       {path: 'cliente-save', component: RegistroClienteComponent},
       {path: 'login-inicio', component: LoginComponent},
-      {path: 'inventario-registro', component: InventarioComponent}
+      {path: 'inventario-registro', component: InventarioComponent},
+      {path: 'insumo-registro', component:InsumoComponent}
     ]),
   
   ],
