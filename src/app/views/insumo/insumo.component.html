@@ -16,18 +16,18 @@
             </div>
             <div class="modal-body">
               
-                <form>
+                <form [formGroup]="form_insumo" (ngSubmit)="save_insumo()"> 
 
                     <div class="row">
 
                         <div class="col">
                             <label for="">Nombre</label>
-                            <input type="text" class="form-control form-control-sm">
+                            <input formControlName="nombre" type="text" class="form-control form-control-sm" required>
                         </div>
 
                         <div class="col">
                             <label for="">Descripción</label>
-                            <input type="text" class="form-control form-control-sm">
+                            <input formControlName="descripcion" type="text" class="form-control form-control-sm" required>
                         </div>
 
                     </div>
@@ -36,12 +36,12 @@
 
                         <div class="col">
                             <label for="">Costo unidad</label>
-                            <input type="number" step="any" class="form-control form-control-sm">
+                            <input formControlName="costo_unidad" type="number" step="any" class="form-control form-control-sm" required>
                         </div>
 
                         <div class="col">
                             <label for="">Stock</label>
-                            <input type="number" class="form-control form-control-sm">
+                            <input formControlName="stock" type="number" class="form-control form-control-sm" required>
                         </div>
 
                     </div>
@@ -50,18 +50,20 @@
 
                         <div class="col">
                             <label for="">Inventario</label>
-                            <ng-select class="form-control custom-select">
-                                <ng-option>1</ng-option>
-                                <ng-option>2</ng-option>
-                                <ng-option>3</ng-option>
-                            </ng-select>
+                            <select class="form-control form-control-sm" formControlName="inventario" required>
+                                <option value="" disabled>Seleccione fecha de inventario</option>
+                                <option [value]="inventario.fecha" *ngFor="let inventario of inventarios">{{inventario.fecha}}</option>
+                            </select>
+                                
                         </div>
 
                         <div class="col">
                         </div>
 
                     </div>
-
+                
+                    <br>
+                    <button type="submit" class="btn btn-success btn-sm">Registrar insumo</button>
                 </form>
 
             </div>
