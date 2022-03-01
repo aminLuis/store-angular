@@ -41,14 +41,26 @@ export class InventarioComponent implements OnInit {
   }
 
   save_inventario():any{
-    this.api_inventario.saveInventario(this.form_inventario.value).subscribe();
-    this.mensaje('Inventario registrado');
-    this.form_inventario.reset();
+
+    if(this.form_inventario.valid){
+      this.api_inventario.saveInventario(this.form_inventario.value).subscribe();
+      this.mensaje('Inventario registrado');
+      this.form_inventario.reset();
+    }else{
+      this.mensaje_error('Los campos deben estar llenos');
+    }
+    
   }
 
   update_inventario(){
-    this.api_inventario.updateInventario(this.inventario).subscribe();
-    this.mensaje('Se ha actualizado el inventario');
+
+    if(!this.validar_editar()){
+      this.api_inventario.updateInventario(this.inventario).subscribe();
+      this.mensaje('Se ha actualizado el inventario');
+    }else{
+      this.mensaje_error('Los campos deben estar llenos');
+    }
+    
   }
 
   delete_inventario(id:BigInteger){
@@ -87,6 +99,29 @@ export class InventarioComponent implements OnInit {
       showConfirmButton: false,
       timer: 1800
     })
+  }
+
+  mensaje_error(texo:string){
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: texo,
+      //footer: '<a href="">Why do I have this issue?</a>'
+    })
+  }
+
+  reset_form(){
+    this.form_inventario.reset();
+    this.listar_inventarios();
+  }
+
+  validar_editar(){
+    if(this.inventario.descripcion===''||
+       this.inventario.fecha===null){
+      return true;
+    }else{
+      return false;
+    }
   }
 
 }
