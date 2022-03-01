@@ -64,8 +64,12 @@ export class InsumoComponent implements OnInit {
   }
 
   public update_insumo(){
+    if(this.validar_editar()){
+      this.mensaje_error('Los campos deben estar llenos');
+    }else{
     this.api_insumo.updateInsumo(this.insumo).subscribe();
-    this.mensaje('Se ha actualizado el insumo!')
+    this.mensaje('Se ha actualizado el insumo!');
+    }
   }
 
 
@@ -121,6 +125,18 @@ export class InsumoComponent implements OnInit {
   reset_form(){
     this.form_insumo.reset();
     this.listar_insumos();
+  }
+
+  validar_editar(){
+    if(this.insumo.nombre===''||
+       this.insumo.descripcion===''||
+       this.insumo.costo_unidad===null||
+       this.insumo.stock===null||
+       this.insumo.inventario===null){
+      return true;
+    }else{
+      return false;
+    }
   }
 
 }
