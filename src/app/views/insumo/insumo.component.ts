@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Insumo } from 'src/app/models/Insumo.interface';
 import Swal from 'sweetalert2';
 import { ApiInsumoService } from 'src/app/services/api-insumo.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-insumo',
@@ -17,6 +18,7 @@ export class InsumoComponent implements OnInit {
   insumos: Insumo[] = [];
   form_insumo: FormGroup;
   @Input() insumo!: Insumo;
+  @Input() subscription!: Subscription;
  
 
   constructor(private api_inventario:ApiInventarioService,public formulario: FormBuilder, private api_insumo:ApiInsumoService) {
@@ -31,6 +33,10 @@ export class InsumoComponent implements OnInit {
 
   ngOnInit(): void {
     this.listar_inventario();
+    this.listar_insumos();
+    this.subscription = this.api_insumo.reload.subscribe(()=>{
+      this.listar_insumos();
+    });
   }
 
   listar_inventario(){
@@ -41,7 +47,7 @@ export class InsumoComponent implements OnInit {
     
   }
 
-  listar_productos(){
+  listar_insumos(){
     this.api_insumo.getInsumos().subscribe(data =>{
     this.insumos = data;
     });
@@ -110,6 +116,11 @@ export class InsumoComponent implements OnInit {
       text: texo,
       //footer: '<a href="">Why do I have this issue?</a>'
     })
+  }
+
+  reset_form(){
+    this.form_insumo.reset();
+    this.listar_insumos();
   }
 
 }
