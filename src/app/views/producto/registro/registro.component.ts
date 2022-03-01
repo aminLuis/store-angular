@@ -43,15 +43,28 @@ export class RegistroComponent implements OnInit {
     });
   }
 
-  save_producto():any{
-    this.api_producto.saveProducto(this.form_producto.value).subscribe();
-    this.mensaje('Se ha registrado el producto!');
-    this.form_producto.reset();    
+  save_producto(){
+
+    if(this.form_producto.valid){
+      this.api_producto.saveProducto(this.form_producto.value).subscribe();
+      this.mensaje('Se ha registrado el producto!');
+      this.form_producto.reset();  
+    }else{
+      this.mensaje_error('Los campos deben estar llenos');
+    }
+
+      
   }
 
   public update_producto(){
-    this.api_producto.updateProducto(this.producto).subscribe();
-    this.mensaje('Se ha actualizado el producto!')
+
+    if(this.validar_editar()){
+      this.mensaje_error('Los campos deben estar llenos');
+    }else{
+      this.api_producto.updateProducto(this.producto).subscribe();
+      this.mensaje('Se ha actualizado el producto!')
+    }
+    
   }
 
   delete_producto(id:BigInteger){
@@ -89,6 +102,30 @@ export class RegistroComponent implements OnInit {
       showConfirmButton: false,
       timer: 1800
     })
+  }
+
+  mensaje_error(texo:string){
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: texo,
+      //footer: '<a href="">Why do I have this issue?</a>'
+    })
+  }
+
+  reset_form(){
+    this.form_producto.reset();
+    this.listar_productos();
+  }
+
+  validar_editar(){
+    if(this.producto.nombre===''||
+       this.producto.descripcion===''||
+       this.producto.precio===null){
+      return true;
+    }else{
+      return false;
+    }
   }
 
 }
