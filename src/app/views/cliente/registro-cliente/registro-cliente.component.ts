@@ -18,7 +18,10 @@ export class RegistroClienteComponent implements OnInit {
     lat: 8.75,
     lng: -75.883
   }
- 
+
+  options: google.maps.MapOptions = {
+   draggable:true
+  }
 
   constructor() { }
 
