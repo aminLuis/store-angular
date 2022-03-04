@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+
 
 @Component({
   selector: 'app-registro-cliente',
@@ -11,23 +12,58 @@ export class RegistroClienteComponent implements OnInit {
     lat: 8.75,
     lng: -75.883
   }  
+
+  centro: google.maps.LatLngLiteral = {
+    lat: 8.75,
+    lng: -75.883
+  }
   zoom = 15;
   title = 'Marker'
 
-  position = {
+  position: google.maps.LatLngLiteral = {
     lat: 8.75,
     lng: -75.883
   }
 
+    
+
   options: google.maps.MapOptions = {
    draggable:true
+  }
+  
+
+    initMap(): void {
+
+    const myLatLng = { lat: -25.363, lng: 131.044 };
+    const map = new google.maps.Map(
+      document.getElementById("map") as HTMLElement,
+      {
+        zoom: 4,
+        center: myLatLng,
+      }
+    );
+  
+    const marker = new google.maps.Marker({
+      position: myLatLng,
+      map,
+      title: "Hello World!",
+      draggable:true
+    });
+
+    google.maps.event.addListener(marker,'dragend',function(){
+      console.log(JSON.stringify(marker.getPosition()))
+    })
+    
+
   }
 
   constructor() { }
 
   ngOnInit(): void {
+   this.initMap();
   }
 
- 
+  
+
 
 }
