@@ -50,8 +50,14 @@ export class RegistroClienteComponent implements OnInit {
       draggable:true
     });
 
+    interface coordenadas {
+      lat: string;
+      lng: string;
+    }
+
     google.maps.event.addListener(marker,'dragend',function(){
-      console.log(JSON.stringify(marker.getPosition()))
+      let coor:coordenadas = JSON.parse(JSON.stringify(marker.getPosition()));
+      console.log(coor.lat);
     })
     
 
