@@ -1,6 +1,6 @@
 export interface Cliente{
     id:BigInteger,
-    cedular:BigInteger,
+    cedula:BigInteger,
     nombre:string,
     apellidos:string,
     latitud:string,
