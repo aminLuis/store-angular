@@ -13,40 +13,24 @@ export class RegistroClienteComponent implements OnInit {
     lng: -75.883
   }  
 
-  centro: google.maps.LatLngLiteral = {
-    lat: 8.75,
-    lng: -75.883
-  }
-  zoom = 15;
-  title = 'Marker'
-
   position: google.maps.LatLngLiteral = {
     lat: 8.75,
     lng: -75.883
-  }
-
-    
-
-  options: google.maps.MapOptions = {
-   draggable:true
-  }
-  
+  }  
 
     initMap(): void {
-
-    const myLatLng = { lat: -25.363, lng: 131.044 };
     const map = new google.maps.Map(
       document.getElementById("map") as HTMLElement,
       {
-        zoom: 4,
-        center: myLatLng,
+        zoom: 15,
+        center: this.center
       }
     );
   
     const marker = new google.maps.Marker({
-      position: myLatLng,
+      position: this.position,
       map,
-      title: "Hello World!",
+      title: "Marker",
       draggable:true
     });
 
