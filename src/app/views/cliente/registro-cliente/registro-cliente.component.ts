@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Cliente } from 'src/app/models/Cliente.interface';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -48,11 +48,10 @@ export class RegistroClienteComponent implements OnInit {
       lng: string;
     }
     
-    google.maps.event.addListener(marker,'drag',function(){
+    google.maps.event.addListener(marker,'dragend',function(){
       let coor:coordenadas = JSON.parse(JSON.stringify(marker.getPosition()));
       (document.getElementById('longitud') as HTMLInputElement).value = coor.lng;
-      (document.getElementById('latitud') as HTMLInputElement).value = coor.lat;
-      
+      (document.getElementById('latitud') as HTMLInputElement).value = coor.lat;      
     })
     
     
@@ -85,14 +84,23 @@ export class RegistroClienteComponent implements OnInit {
     })
   }
 
+  eventoKey(){
+    alert('Funciona');
+  }
+
   save_cliente(){
-    // if(this.form_cliente.valid){
-    //   this.api_cliente.saveCliente(this.form_cliente.value).subscribe();
-    //   this.mensaje('Cliente registrado con exito!');
-    //   this.form_cliente.reset();
-    // }else{
-    //   this.mensaje_error('Los campos deben estar llenos');
-    // }
+    
+      this.form_cliente.value['latitud'] = (document.getElementById('latitud') as HTMLInputElement).value;
+      this.form_cliente.value['longitud'] = (document.getElementById('longitud') as HTMLInputElement).value;
+      this.api_cliente.saveCliente(this.form_cliente.value).subscribe();
+      this.mensaje('Cliente registrado con exito!');
+      this.form_cliente.reset();
+      console.log(this.form_cliente.value);
+   
+     
+    
+  
+    
   }
 
   update_cliente(){

@@ -17,15 +17,15 @@
         </thead>
 
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr *ngFor="let cliente of clientes">
+                <td>{{cliente.nombre}}</td>
+                <td>{{cliente.apellidos}}</td>
+                <td>{{cliente.telefono}}</td>
                 <td>
-                    <button class="btn btn-primary btn-sm">
+                    <button data-toggle="modal" data-target="#modal-editar" class="btn btn-primary btn-sm">
                         Editar
                     </button> |
-                    <button class="btn btn-info btn-sm">
+                    <button data-toggle="modal" data-target="#modal-ubicacion" class="btn btn-info btn-sm">
                         Ver ubicación
                     </button> |
                     <button class="btn btn-danger btn-sm">
@@ -54,22 +54,22 @@
                         <div class="row">
                             <div class="col">
                                 <label for="">Cédula</label>
-                                <input type="text" class="form-control" required>
+                                <input formControlName="cedula" type="text" class="form-control" required>
                             </div>
                             <div class="col">
                                 <label for="">Nombre</label>
-                                <input type="text" class="form-control" required>
+                                <input formControlName="nombre" type="text" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col">
                                 <label for="">Apellidos</label>
-                                <input type="text" class="form-control" required>
+                                <input formControlName="apellidos" type="text" class="form-control" required>
                             </div>
                             <div class="col">
                                 <label for="">Teléfono</label>
-                                <input type="number" class="form-control" required>
+                                <input formControlName="telefono" type="number" class="form-control" required>
                             </div>
                         </div>
 
@@ -82,13 +82,14 @@
 
                         <div class="row">
                             <div class="col">
-                                <label for="">Longitud</label>
-                                <input id="longitud" type="text" class="form-control form-control-sm" required readonly>
-                            </div> 
-                            <div class="col">
                                 <label for="">Latitud</label>
-                                <input id="latitud" type="text" class="form-control form-control-sm" required readonly>
+                                <input formControlName="latitud"  id="latitud" type="text" class="form-control form-control-sm" readonly>
                             </div>
+                            <div class="col">
+                                <label for="">Longitud</label>
+                                <input formControlName="longitud" id="longitud" type="text" class="form-control form-control-sm" readonly>
+                            </div> 
+                           
                         </div>
                         <br>
                         <div class="row">
@@ -109,5 +110,105 @@
         </div>
 
         <!-- Final modal nuevo cliente -->
+
+
+        <!-- Inicio modal editar cliente -->
+        <div class="modal fade" id="modal-editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Editar cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                
+                    <form [formGroup]="form_cliente" (ngSubmit)="update_cliente()">
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="">Cédula</label>
+                                <input formControlName="cedula" type="text" class="form-control" required>
+                            </div>
+                            <div class="col">
+                                <label for="">Nombre</label>
+                                <input formControlName="nombre" type="text" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="">Apellidos</label>
+                                <input formControlName="apellidos" type="text" class="form-control" required>
+                            </div>
+                            <div class="col">
+                                <label for="">Teléfono</label>
+                                <input formControlName="telefono" type="number" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <label for="">Dirección</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="">Latitud</label>
+                                <input formControlName="latitud"  id="latitud" type="text" class="form-control form-control-sm" required>
+                            </div>
+                            <div class="col">
+                                <label for="">Longitud</label>
+                                <input formControlName="longitud" id="longitud" type="text" class="form-control form-control-sm" required readonly>
+                            </div> 
+                           
+                        </div>
+                        <br>
+                        <div class="row">
+                            
+                            
+
+                        </div>
+
+                        <br>
+                        <button class="btn btn-success btn-sm">Guardar</button>
+
+                    </form>
+
+                </div>
+                
+            </div>
+            </div>
+        </div>
+
+        <!-- Final modal editar cliente -->
+
+        <!-- Modal ubicación cliente -->
+
+            <div class="modal fade" id="modal-ubicacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary">
+                    <h5 class="modal-title text-white" id="exampleModalLabel">Ubicación cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body" style="margin-left: auto; margin-right: auto;">
+                    
+                        <google-map width="700px"> 
+
+                        </google-map>
+
+                    </div>
+                    
+                </div>
+                </div>
+            </div>
+
+        <!-- Final modal ubicación cliente -->
 
 </div>
