@@ -4,6 +4,6 @@ export interface Cliente{
     nombre:string,
     apellidos:string,
     latitud:string,
-    longitid:string,
+    longitud:string,
     telefono:BigInteger
 }

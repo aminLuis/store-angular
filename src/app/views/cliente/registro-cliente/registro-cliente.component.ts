@@ -14,24 +14,28 @@ import Swal from 'sweetalert2';
 })
 export class RegistroClienteComponent implements OnInit {
 
-  longitud:string='';
-  latitud:string='';
-
   center = {
     lat: 8.75,
     lng: -75.883
   }  
 
+  zoom = 15;
+
   position: google.maps.LatLngLiteral = {
     lat: 8.75,
     lng: -75.883
-  }  
+  } 
+  
+  position_ver = {
+    lat:0,
+    lng:0
+  }
 
     initMap(): void {
     const map = new google.maps.Map(
       document.getElementById("map") as HTMLElement,
       {
-        zoom: 15,
+        zoom: this.zoom,
         center: this.center
       }
     );
@@ -55,7 +59,8 @@ export class RegistroClienteComponent implements OnInit {
     })
     
     
-  }
+   }
+
 
   clientes: Cliente[]=[];
   form_cliente: FormGroup;
@@ -76,16 +81,15 @@ export class RegistroClienteComponent implements OnInit {
 
   ngOnInit(): void {
    this.listar_clientes();
+   this.subscription = this.api_cliente.reload.subscribe(()=>{
+    this.listar_clientes();
+  });
   }
 
   listar_clientes(){
     this.api_cliente.getClientes().subscribe(data=>{
       this.clientes = data;
     })
-  }
-
-  eventoKey(){
-    alert('Funciona');
   }
 
   save_cliente(){
@@ -95,12 +99,7 @@ export class RegistroClienteComponent implements OnInit {
       this.api_cliente.saveCliente(this.form_cliente.value).subscribe();
       this.mensaje('Cliente registrado con exito!');
       this.form_cliente.reset();
-      console.log(this.form_cliente.value);
-   
-     
-    
-  
-    
+      console.log(this.form_cliente.value);  
   }
 
   update_cliente(){
@@ -136,10 +135,14 @@ export class RegistroClienteComponent implements OnInit {
 
   cargar_datos(data: Cliente){
     this.cliente = data;
-    console.log(this.cliente);
-}
+  
+    this.position_ver = {
+     lat:parseFloat(this.cliente.latitud),
+     lng:parseFloat(this.cliente.longitud)
+    }
 
-
+    console.log(parseInt(this.cliente.longitud));
+  }
 
   mensaje(texto: string){
     Swal.fire({
@@ -170,7 +173,7 @@ export class RegistroClienteComponent implements OnInit {
        this.cliente.nombre===''||
        this.cliente.apellidos===''||
        this.cliente.latitud===''||
-       this.cliente.longitid===''||
+       this.cliente.longitud===''||
        this.cliente.telefono===null){
       return true;
     }else{
