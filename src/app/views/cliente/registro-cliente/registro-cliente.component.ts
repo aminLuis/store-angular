@@ -21,6 +21,10 @@ export class RegistroClienteComponent implements OnInit {
 
   zoom = 15;
 
+  options: google.maps.MapOptions = {
+    draggable: true
+  }
+
   position: google.maps.LatLngLiteral = {
     lat: 8.75,
     lng: -75.883
@@ -32,16 +36,45 @@ export class RegistroClienteComponent implements OnInit {
   }
 
     initMap(): void {
+        const map = new google.maps.Map(
+          document.getElementById("map") as HTMLElement,
+          {
+            zoom: this.zoom,
+            center: this.center
+          }
+        );
+  
+        const marker = new google.maps.Marker({
+          position: this.position,
+          map,
+          title: "Marker",
+          draggable:true
+        });
+
+        interface coordenadas {
+          lat: string;
+          lng: string;
+        }
+    
+        google.maps.event.addListener(marker,'dragend',function(){
+          let coor:coordenadas = JSON.parse(JSON.stringify(marker.getPosition()));
+          (document.getElementById('longitud') as HTMLInputElement).value = coor.lng;
+          (document.getElementById('latitud') as HTMLInputElement).value = coor.lat;      
+        })
+    
+   }
+
+   map_edit(): void {
     const map = new google.maps.Map(
-      document.getElementById("map") as HTMLElement,
+      document.getElementById("map_editar") as HTMLElement,
       {
         zoom: this.zoom,
-        center: this.center
+        center: this.position_ver
       }
     );
-  
+
     const marker = new google.maps.Marker({
-      position: this.position,
+      position: this.position_ver,
       map,
       title: "Marker",
       draggable:true
@@ -51,15 +84,14 @@ export class RegistroClienteComponent implements OnInit {
       lat: string;
       lng: string;
     }
-    
-    google.maps.event.addListener(marker,'dragend',function(){
-      let coor:coordenadas = JSON.parse(JSON.stringify(marker.getPosition()));
-      (document.getElementById('longitud') as HTMLInputElement).value = coor.lng;
-      (document.getElementById('latitud') as HTMLInputElement).value = coor.lat;      
-    })
-    
-    
-   }
+
+    // google.maps.event.addListener(marker,'dragend',function(){
+    //   let coor:coordenadas = JSON.parse(JSON.stringify(marker.getPosition()));
+    //   (document.getElementById('longitud') as HTMLInputElement).value = coor.lng;
+    //   (document.getElementById('latitud') as HTMLInputElement).value = coor.lat;      
+    // })
+
+}
 
 
   clientes: Cliente[]=[];
@@ -143,6 +175,8 @@ export class RegistroClienteComponent implements OnInit {
 
     console.log(parseInt(this.cliente.longitud));
   }
+
+  
 
   mensaje(texto: string){
     Swal.fire({
