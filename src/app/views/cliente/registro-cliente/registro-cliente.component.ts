@@ -205,12 +205,12 @@ export class RegistroClienteComponent implements OnInit {
   }
 
   validar_editar(){
-    if(this.cliente.cedula===null||
+    if(this.cliente.telefono===null||
        this.cliente.nombre===''||
        this.cliente.apellidos===''||
        this.cliente.latitud===''||
        this.cliente.longitud===''||
-       this.cliente.telefono===null){
+       this.cliente.cedula===null){
       return true;
     }else{
       return false;
