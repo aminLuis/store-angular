@@ -126,12 +126,24 @@ export class RegistroClienteComponent implements OnInit {
 
   save_cliente(){
     
-      this.form_cliente.value['latitud'] = (document.getElementById('latitud') as HTMLInputElement).value;
-      this.form_cliente.value['longitud'] = (document.getElementById('longitud') as HTMLInputElement).value;
-      this.api_cliente.saveCliente(this.form_cliente.value).subscribe();
-      this.mensaje('Cliente registrado con exito!');
-      this.form_cliente.reset();
-      console.log(this.form_cliente.value);  
+      if(!this.form_cliente.valid || 
+        (document.getElementById('latitud') as HTMLInputElement).value===''||
+        (document.getElementById('longitud') as HTMLInputElement).value===''){
+
+          this.mensaje_error('Los campos deben estar llenos');
+      }else{
+        
+        this.form_cliente.value['latitud'] = (document.getElementById('latitud') as HTMLInputElement).value;
+        this.form_cliente.value['longitud'] = (document.getElementById('longitud') as HTMLInputElement).value;
+        this.api_cliente.saveCliente(this.form_cliente.value).subscribe();
+        this.mensaje('Cliente registrado con exito!');
+        this.form_cliente.reset();
+        
+      }
+
+      
+      console.log(this.form_cliente.value); 
+       
   }
 
   update_cliente(){
