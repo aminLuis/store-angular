@@ -85,11 +85,11 @@ export class RegistroClienteComponent implements OnInit {
       lng: string;
     }
 
-    // google.maps.event.addListener(marker,'dragend',function(){
-    //   let coor:coordenadas = JSON.parse(JSON.stringify(marker.getPosition()));
-    //   (document.getElementById('longitud') as HTMLInputElement).value = coor.lng;
-    //   (document.getElementById('latitud') as HTMLInputElement).value = coor.lat;      
-    // })
+    google.maps.event.addListener(marker,'dragend',function(){
+      let coor:coordenadas = JSON.parse(JSON.stringify(marker.getPosition()));
+      (document.getElementById('longitud_e') as HTMLInputElement).value = coor.lng;
+      (document.getElementById('latitud_e') as HTMLInputElement).value = coor.lat;  
+    })
 
 }
 
@@ -112,8 +112,8 @@ export class RegistroClienteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   this.listar_clientes();
-   this.subscription = this.api_cliente.reload.subscribe(()=>{
+    this.listar_clientes();
+    this.subscription = this.api_cliente.reload.subscribe(()=>{
     this.listar_clientes();
   });
   }
@@ -138,12 +138,16 @@ export class RegistroClienteComponent implements OnInit {
     if(this.validar_editar()){
       this.mensaje_error('Los campos deben estar llenos');
     }else{
+      this.cliente.latitud = (document.getElementById('latitud_e') as HTMLInputElement).value;
+      this.cliente.longitud = (document.getElementById('longitud_e') as HTMLInputElement).value;
       this.api_cliente.updateCliente(this.cliente).subscribe();
+      console.log(this.cliente);
       this.mensaje('Se ha actualizado el cliente');
     }
+    
   }
 
-  delete_producto(id:BigInteger){
+  delete_cliente(id:BigInteger){
     Swal.fire({
       title: '¿Seguro que desea eliminar el registro?',
       text: "El registro se eliminará permanentemente",
@@ -172,8 +176,6 @@ export class RegistroClienteComponent implements OnInit {
      lat:parseFloat(this.cliente.latitud),
      lng:parseFloat(this.cliente.longitud)
     }
-
-    console.log(parseInt(this.cliente.longitud));
   }
 
   
