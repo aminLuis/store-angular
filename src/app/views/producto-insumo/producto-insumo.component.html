@@ -4,14 +4,14 @@
     <hr>
     
     <ul class="list-group">
-        <li class="list-group-item">
+        <li *ngFor="let producto of productos" class="list-group-item">
             <div class="card">
                 <div class="card-header">
-                  Producto
+                  {{producto.descripcion}}
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">Producto</h5>
-                  <button class="btn btn-warning">
+                  <h5 class="card-title">{{producto.nombre}}</h5>
+                  <button (click)="listar_insumos()" class="btn btn-warning" data-toggle="modal" data-target="#modal-asignar">
                     Asignar
                   </button> | 
                   <button class="btn btn-primary" data-toggle="modal" data-target="#modal-editar">
@@ -22,5 +22,59 @@
               </div>
         </li>
     </ul>
+
+    <!-- Inicio modal asignación insumo -->
+
+    <div class="modal fade" id="modal-asignar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-warning">
+            <h5 class="modal-title text-white" id="exampleModalLabel">Insumos</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+            <form>
+
+              <div class="row">
+                <div class="col">
+                  <label for="">ID producto</label>
+                  <input type="number" class="form-control form-control-sm">
+                </div>
+                <div class="col">
+                  <label for="">ID insumo</label>
+                  <input type="number" class="form-control form-control-sm">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <label for="">Insumo</label>
+                  
+                  <ng-select class="form-control form-control-sm fondo">
+                    <ng-option class="fondo" *ngFor="let insumo of insumos" [value]="insumo.id">{{insumo.descripcion}}</ng-option>
+                  </ng-select>
+                  
+
+                </div>
+                <div class="col">
+                  <label for="">Descontar</label>
+                  <input type="number" class="form-control form-control-sm">
+                </div>
+              </div>
+
+              <br>
+              <button class="btn btn-success btn-sm" type="submit">Guardar</button>
+            </form>
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Final modal asignación insumo -->
 
 </div>

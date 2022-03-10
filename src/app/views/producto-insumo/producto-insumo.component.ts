@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Producto } from 'src/app/models/Producto.interface';
+import { ApiProductoService } from 'src/app/services/api-producto.service';
+import { Insumo } from 'src/app/models/Insumo.interface';
+import { ApiInsumoService } from 'src/app/services/api-insumo.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-producto-insumo',
@@ -7,9 +12,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductoInsumoComponent implements OnInit {
 
-  constructor() { }
+  productos: Producto[]=[];
+  insumos: Insumo[]=[];
+
+  constructor(private api_producto:ApiProductoService, private api_insumo:ApiInsumoService) { }
 
   ngOnInit(): void {
+    this.listar_productos();
+  }
+
+  listar_productos(){
+    this.api_producto.getProductos().subscribe(data=>{
+      this.productos = data;
+    });
+  }
+
+  listar_insumos(){
+    this.api_insumo.getInsumos().subscribe(data=>{
+      this.insumos = data;
+      console.log(this.insumos);
+    })
   }
 
 }
