@@ -7,11 +7,11 @@
         <li *ngFor="let producto of productos" class="list-group-item">
             <div class="card">
                 <div class="card-header">
-                  {{producto.descripcion}}
+                  {{producto.nombre}}
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">{{producto.nombre}}</h5>
-                  <button (click)="listar_insumos()" class="btn btn-warning" data-toggle="modal" data-target="#modal-asignar">
+                  <h5 class="card-title">{{producto.descripcion}}</h5>
+                  <button (click)="listar_insumos(); cargar_datos_producto(producto)" class="btn btn-warning" data-toggle="modal" data-target="#modal-asignar">
                     Asignar
                   </button> | 
                   <button class="btn btn-primary" data-toggle="modal" data-target="#modal-editar">
@@ -35,39 +35,37 @@
             </button>
           </div>
           <div class="modal-body">
-            
-            <form>
+
+              <label for="">Insumo</label>
+              <ng-select [(ngModel)]="data_insumo" class="form-control form-control-sm fondo">
+                    <ng-option class="fondo" *ngFor="let insumo of insumos" [value]="insumo">{{insumo.descripcion}}</ng-option>
+              </ng-select>
+            <br><br>
+            <form [formGroup]="form_producto_insumo" (ngSubmit)="save_producto_insumo()">
 
               <div class="row">
                 <div class="col">
                   <label for="">ID producto</label>
-                  <input type="number" class="form-control form-control-sm">
+                  <input formControlName="id_producto" *ngIf="producto" [(ngModel)]="producto.id" type="number" class="form-control form-control-sm" readonly required>
                 </div>
                 <div class="col">
                   <label for="">ID insumo</label>
-                  <input type="number" class="form-control form-control-sm">
+                  <input formControlName="id_insumo" *ngIf="data_insumo" [(ngModel)]="data_insumo.id" type="number" class="form-control form-control-sm" readonly required>
                 </div>
               </div>
 
               <div class="row">
-                <div class="col">
-                  <label for="">Insumo</label>
-                  
-                  <ng-select class="form-control form-control-sm fondo">
-                    <ng-option class="fondo" *ngFor="let insumo of insumos" [value]="insumo.id">{{insumo.descripcion}}</ng-option>
-                  </ng-select>
-                  
-
-                </div>
+                
                 <div class="col">
                   <label for="">Descontar</label>
-                  <input type="number" class="form-control form-control-sm">
+                  <input formControlName="restar" type="number" class="form-control form-control-sm" required>
                 </div>
               </div>
 
               <br>
               <button class="btn btn-success btn-sm" type="submit">Guardar</button>
             </form>
+            
 
           </div>
           
