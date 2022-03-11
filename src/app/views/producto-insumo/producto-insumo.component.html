@@ -14,7 +14,7 @@
                   <button (click)="listar_insumos(); cargar_datos_producto(producto)" class="btn btn-warning" data-toggle="modal" data-target="#modal-asignar">
                     Asignar
                   </button> | 
-                  <button class="btn btn-primary" data-toggle="modal" data-target="#modal-editar">
+                  <button (click)="cargar_datos_producto(producto); listar_asignaciones(producto.id)" class="btn btn-primary" data-toggle="modal" data-target="#modal-mostrar-asignaciones">
                     Ver asignaciones
                   </button> 
                   
@@ -74,5 +74,37 @@
     </div>
 
     <!-- Final modal asignación insumo -->
+
+    <!-- Inicio modal mostrar asignaciones -->
+
+    <div class="modal fade" id="modal-mostrar-asignaciones" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-primary">
+            <h5 class="modal-title text-white" id="exampleModalLabel">Insumos asignados</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+            <div *ngIf="producto" class="card-header">
+              <h5>{{producto.descripcion}}</h5>
+            </div>
+
+            <ul class="list-group">
+              <li class="list-group-item list-group-item-ligth">
+                A simple primary list group item
+                <button class="btn btn-danger btn-sm" style="float: right">Eliminar</button>
+              </li>
+            </ul>
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Final modal mostrar asignaciones -->
 
 </div>

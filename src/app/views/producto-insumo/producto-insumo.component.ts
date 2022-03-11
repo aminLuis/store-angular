@@ -23,6 +23,7 @@ export class ProductoInsumoComponent implements OnInit {
   @Input() data_insumo!:Insumo;
   @Input() subscription!: Subscription;
   productos_insumo: Producto_insumo[]=[];
+  asignaciones: Producto_insumo[]=[];
 
   constructor(private api_producto:ApiProductoService, 
     private api_insumo:ApiInsumoService,
@@ -72,10 +73,17 @@ export class ProductoInsumoComponent implements OnInit {
     }
   }
 
+  
   cargar_datos_producto(data:Producto){
     this.producto = data;
   }
 
+  listar_asignaciones(id_producto:BigInteger){
+    this.api_producto_insumo.getAsignaciones(id_producto).subscribe(data=>{
+      this.asignaciones = data;
+      console.log(this.asignaciones);
+    })
+  }
 
 
   mensaje(texto: string){
