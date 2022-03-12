@@ -33,6 +33,7 @@ export class ProductoInsumoComponent implements OnInit {
       this.form_producto_insumo = formulario.group({
         id_producto:[''],
         id_insumo:[''],
+        descripcion:[''],
         restar:['']
       });
      }

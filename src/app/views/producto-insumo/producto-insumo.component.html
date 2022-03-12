@@ -55,11 +55,17 @@
               </div>
 
               <div class="row">
+
+                <div class="col">
+                  <label for="">Descripción insumo</label>
+                  <input formControlName="descripcion" *ngIf="data_insumo" [(ngModel)]="data_insumo.descripcion" type="text" class="form-control form-control-sm" required readonly>
+                </div>
                 
                 <div class="col">
                   <label for="">Descontar</label>
                   <input formControlName="restar" type="number" class="form-control form-control-sm" required>
                 </div>
+                
               </div>
 
               <br>
@@ -93,8 +99,8 @@
             </div>
 
             <ul class="list-group">
-              <li class="list-group-item list-group-item-ligth">
-                A simple primary list group item
+              <li *ngFor="let asignacion of asignaciones" class="list-group-item text-white list-group-item-action list-group-item-secondary">
+                {{asignacion.descripcion}}
                 <button class="btn btn-danger btn-sm" style="float: right">Eliminar</button>
               </li>
             </ul>
