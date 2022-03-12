@@ -101,7 +101,7 @@
             <ul class="list-group">
               <li *ngFor="let asignacion of asignaciones" class="list-group-item text-white list-group-item-action list-group-item-secondary">
                 {{asignacion.descripcion}}
-                <button class="btn btn-danger btn-sm" style="float: right">Eliminar</button>
+                <button (click)="delete_producto_insumo(asignacion.id)" class="btn btn-danger btn-sm" style="float: right">Eliminar</button>
               </li>
             </ul>
 

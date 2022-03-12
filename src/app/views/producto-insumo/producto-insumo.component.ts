@@ -43,6 +43,7 @@ export class ProductoInsumoComponent implements OnInit {
     this.subscription = this.api_producto_insumo.reload.subscribe(()=>{
       this.listar_productos_insumo();
       this.listar_productos();
+      this.listar_asignaciones(this.producto.id);
     });
   }
 
@@ -86,6 +87,28 @@ export class ProductoInsumoComponent implements OnInit {
     })
   }
 
+
+  delete_producto_insumo(id:BigInteger){
+    Swal.fire({
+      title: '¿Seguro que desea eliminar el registro?',
+      text: "El registro se eliminará permanentemente",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, deseo eliminarlo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.api_producto_insumo.deleteProducto_insumo(id).subscribe();
+        Swal.fire(
+          'Eliminado!',
+          'El registro ha sido eliminado.',
+          'success'
+        )
+      }
+    })
+  
+}
 
   mensaje(texto: string){
     Swal.fire({

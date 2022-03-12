@@ -46,7 +46,12 @@ export class ApiProductoInsumoService {
   }
 
   public deleteProducto_insumo(id:BigInteger):Observable<{}>{
-    return this.http.delete<Producto_insumo>(this.URL+"/"+id);
+    return this.http.delete<Producto_insumo>(this.URL+"/"+id).
+    pipe(
+      tap(()=>{
+        this.refresh.next();
+      })
+    )
   }
 
   public getAsignaciones(id_producto:BigInteger):Observable<Producto_insumo[]>{
