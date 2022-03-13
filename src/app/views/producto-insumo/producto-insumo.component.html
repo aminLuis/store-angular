@@ -37,9 +37,17 @@
           <div class="modal-body">
 
               <label for="">Insumo</label>
-              <ng-select [(ngModel)]="data_insumo" class="form-control form-control-sm fondo">
-                    <ng-option class="fondo" *ngFor="let insumo of insumos" [value]="insumo">{{insumo.descripcion}}</ng-option>
+              <ng-select [(ngModel)]="data_insumo" class="form-control form-control-sm">
+                    <ng-option class="custom" *ngFor="let insumo of insumos" [value]="insumo">{{insumo.descripcion}}</ng-option>
               </ng-select>
+
+              <!-- <select class="form-control form-control-sm" [(ngModel)]="data_insumo">
+               
+                <option selected value="" disabled>Seleccione fecha de inventario</option>
+                <option [value]="insumo" *ngFor="let insumo of insumos">{{insumo.descripcion}}</option>
+
+              </select> -->
+
             <br><br>
             <form [formGroup]="form_producto_insumo" (ngSubmit)="save_producto_insumo()">
 

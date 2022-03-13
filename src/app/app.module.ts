@@ -17,6 +17,7 @@ import { LoginComponent } from './views/login/login.component';
 import { InventarioComponent } from './views/inventario/inventario.component';
 import { InsumoComponent } from './views/insumo/insumo.component';
 import { ProductoInsumoComponent } from './views/producto-insumo/producto-insumo.component';
+import { VentasComponent } from './views/ventas/ventas.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProductoInsumoComponent } from './views/producto-insumo/producto-insumo
     LoginComponent,
     InventarioComponent,
     InsumoComponent,
-    ProductoInsumoComponent
+    ProductoInsumoComponent,
+    VentasComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { ProductoInsumoComponent } from './views/producto-insumo/producto-insumo
       {path: 'login-inicio', component: LoginComponent},
       {path: 'inventario-registro', component: InventarioComponent},
       {path: 'insumo-registro', component:InsumoComponent},
-      {path: 'producto-insumo', component:ProductoInsumoComponent}
+      {path: 'producto-insumo', component:ProductoInsumoComponent},
+      {path: 'venta-register', component:VentasComponent}
     ]),
   
   ],
